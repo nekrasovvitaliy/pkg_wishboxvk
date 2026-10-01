@@ -25,11 +25,15 @@ defined('_JEXEC') or die;
  */
 final class VkApiClient
 {
-	private const string API_URL = 'https://api.vk.com/method/';
+	private const string DEFAULT_API_URL = 'https://api.vk.com/method/';
 
 	private const string DEFAULT_API_VERSION = '5.199';
 
 	private Http $http;
+
+	private string $apiUrl;
+
+	private string $proxyToken;
 
 	/**
 	 * @since 1.0.0
@@ -37,8 +41,19 @@ final class VkApiClient
 	public function __construct(
 		private readonly string $accessToken,
 		private readonly string $apiVersion = self::DEFAULT_API_VERSION,
-		?Http $http = null
+		?Http $http = null,
+		string $apiUrl = self::DEFAULT_API_URL,
+		string $proxyToken = ''
 	) {
+		$apiUrl = trim($apiUrl);
+
+		if (filter_var($apiUrl, FILTER_VALIDATE_URL) === false || parse_url($apiUrl, PHP_URL_SCHEME) !== 'https')
+		{
+			throw new InvalidArgumentException('VK API URL must be a valid HTTPS URL.');
+		}
+
+		$this->apiUrl = rtrim($apiUrl, '/') . '/';
+		$this->proxyToken = $proxyToken;
 		$this->http = $http ?? new HttpFactory()->getHttp([], ['curl', 'stream']);
 	}
 
@@ -66,10 +81,17 @@ final class VkApiClient
 
 		$parameters['access_token'] = $this->accessToken;
 		$parameters['v'] = $apiVersion ?? $this->apiVersion;
+		$headers = ['Content-Type' => 'application/x-www-form-urlencoded'];
+
+		if ($this->proxyToken !== '')
+		{
+			$headers['X-VK-Proxy-Token'] = $this->proxyToken;
+		}
+
 		$response = $this->http->post(
-			self::API_URL . $method,
+			$this->apiUrl . $method,
 			http_build_query($parameters),
-			['Content-Type' => 'application/x-www-form-urlencoded']
+			$headers
 		);
 		$statusCode = $response->getStatusCode();
 

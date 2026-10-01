@@ -75,6 +75,19 @@ $response = $vkApiClient->execute(
 );
 ```
 
+Для работы через HTTPS-прокси передайте его URL и общий секрет. Клиент отправит
+секрет в заголовке `X-VK-Proxy-Token`:
+
+```php
+$vkApiClient = new VkApiClient(
+	accessToken: 'VK_ACCESS_TOKEN',
+	apiUrl: 'https://proxy.example/vk-api-proxy.php/',
+	proxyToken: 'PROXY_SHARED_SECRET'
+);
+```
+
+Если прокси авторизует сервер по IP, параметр `proxyToken` можно не указывать.
+
 ## VK Market
 
 `VkMarketService` принимает идентификатор сообщества без минуса. Для каждого

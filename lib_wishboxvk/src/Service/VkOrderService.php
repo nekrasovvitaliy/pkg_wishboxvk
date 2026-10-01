@@ -50,7 +50,8 @@ final readonly class VkOrderService
 				'group_id' => $this->groupId,
 				'offset'   => max(0, $offset),
 				'count'    => min(100, max(1, $limit)),
-			]
+			],
+			'5.122'
 		);
 
 		if (!$response instanceof stdClass)
