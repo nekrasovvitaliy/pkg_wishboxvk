@@ -12,7 +12,9 @@ use WishboxVkLibrary\Dto\VkMarketItemUpdate;
 use WishboxVkLibrary\Exception\VkApiException;
 use WishboxVkLibrary\Exception\VkCaptchaRequiredException;
 
+// phpcs:disable PSR1.Files.SideEffects
 defined('_JEXEC') or die;
+// phpcs:enable PSR1.Files.SideEffects
 
 /**
  * Updates product data through the VK Market API.
@@ -21,9 +23,9 @@ defined('_JEXEC') or die;
  */
 final class VkMarketService
 {
-	private const API_VERSION = '5.131';
+	private const string API_VERSION = '5.131';
 
-	private const MAX_BATCH_SIZE = 25;
+	private const int MAX_BATCH_SIZE = 25;
 
 	/**
 	 * @since 1.0.0

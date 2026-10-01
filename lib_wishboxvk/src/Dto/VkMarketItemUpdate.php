@@ -8,23 +8,25 @@ namespace WishboxVkLibrary\Dto;
 
 use InvalidArgumentException;
 
+// phpcs:disable PSR1.Files.SideEffects
 defined('_JEXEC') or die;
+// phpcs:enable PSR1.Files.SideEffects
 
 /**
  * Describes one VK Market item update.
  *
  * @since 1.0.0
  */
-final class VkMarketItemUpdate
+final readonly class VkMarketItemUpdate
 {
 	/**
 	 * @since 1.0.0
 	 */
 	public function __construct(
-		public readonly int $itemId,
-		public readonly float $price,
-		public readonly float $oldPrice = 0.0,
-		public readonly bool $deleted = false
+		public int   $itemId,
+		public float $price,
+		public float $oldPrice = 0.0,
+		public bool  $deleted = false
 	) {
 		if ($this->itemId < 1)
 		{

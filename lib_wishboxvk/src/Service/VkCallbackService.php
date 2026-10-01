@@ -8,22 +8,24 @@ namespace WishboxVkLibrary\Service;
 
 use WishboxVkLibrary\Exception\VkCallbackException;
 
+// phpcs:disable PSR1.Files.SideEffects
 defined('_JEXEC') or die;
+// phpcs:enable PSR1.Files.SideEffects
 
 /**
  * Validates VK Callback API payloads and confirmation requests.
  *
  * @since 1.0.0
  */
-final class VkCallbackService
+final readonly class VkCallbackService
 {
 	/**
 	 * @since 1.0.0
 	 */
 	public function __construct(
-		private readonly int $groupId,
-		private readonly string $secret,
-		private readonly string $confirmationCode
+		private int    $groupId,
+		private string $secret,
+		private string $confirmationCode
 	) {
 	}
 

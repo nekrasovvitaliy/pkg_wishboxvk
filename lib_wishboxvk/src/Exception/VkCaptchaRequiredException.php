@@ -6,7 +6,9 @@
 
 namespace WishboxVkLibrary\Exception;
 
+// phpcs:disable PSR1.Files.SideEffects
 defined('_JEXEC') or die;
+// phpcs:enable PSR1.Files.SideEffects
 
 /**
  * Signals that VK requires captcha validation before a request can be repeated.

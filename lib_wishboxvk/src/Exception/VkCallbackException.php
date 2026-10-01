@@ -8,7 +8,9 @@ namespace WishboxVkLibrary\Exception;
 
 use RuntimeException;
 
+// phpcs:disable PSR1.Files.SideEffects
 defined('_JEXEC') or die;
+// phpcs:enable PSR1.Files.SideEffects
 
 /**
  * Represents invalid VK Callback API configuration or payload credentials.

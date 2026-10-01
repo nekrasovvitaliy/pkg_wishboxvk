@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="pkg_wishboxvk" default="make" basedir=".">
+	<property name="package" value="pkg_wishboxvk.zip" />
+
+	<target name="make" description="Build the Joomla package.">
+		<delete quiet="yes">
+			<fileset dir=".">
+				<include name="${package}" />
+			</fileset>
+		</delete>
+
+		<zip destfile="lib_wishboxvk.zip">
+			<fileset dir="./lib_wishboxvk">
+				<include name="language/**" />
+				<include name="src/**" />
+				<include name="lib_wishboxvk.xml" />
+			</fileset>
+		</zip>
+
+		<zip destfile="${package}">
+			<fileset dir=".">
+				<include name="lib_wishboxvk.zip" />
+				<include name="language/**" />
+				<include name="pkg_wishboxvk.xml" />
+			</fileset>
+		</zip>
+
+		<delete quiet="yes">
+			<fileset dir=".">
+				<include name="lib_wishboxvk.zip" />
+			</fileset>
+		</delete>
+	</target>
+</project>

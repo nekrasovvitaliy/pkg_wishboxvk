@@ -6,7 +6,9 @@
 
 namespace WishboxVkLibrary\Service;
 
+// phpcs:disable PSR1.Files.SideEffects
 defined('_JEXEC') or die;
+// phpcs:enable PSR1.Files.SideEffects
 
 /**
  * Defines the contract for classes that depend on the VK Callback service.

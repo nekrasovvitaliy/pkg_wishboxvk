@@ -14,7 +14,9 @@ use JsonException;
 use WishboxVkLibrary\Exception\VkApiException;
 use WishboxVkLibrary\Exception\VkCaptchaRequiredException;
 
+// phpcs:disable PSR1.Files.SideEffects
 defined('_JEXEC') or die;
+// phpcs:enable PSR1.Files.SideEffects
 
 /**
  * Sends authenticated requests to VK API methods.
@@ -23,9 +25,9 @@ defined('_JEXEC') or die;
  */
 final class VkApiClient
 {
-	private const API_URL = 'https://api.vk.com/method/';
+	private const string API_URL = 'https://api.vk.com/method/';
 
-	private const DEFAULT_API_VERSION = '5.199';
+	private const string DEFAULT_API_VERSION = '5.199';
 
 	private Http $http;
 
@@ -37,7 +39,7 @@ final class VkApiClient
 		private readonly string $apiVersion = self::DEFAULT_API_VERSION,
 		?Http $http = null
 	) {
-		$this->http = $http ?? (new HttpFactory())->getHttp([], ['curl', 'stream']);
+		$this->http = $http ?? new HttpFactory()->getHttp([], ['curl', 'stream']);
 	}
 
 	/**

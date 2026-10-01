@@ -8,7 +8,9 @@ namespace WishboxVkLibrary\Service;
 
 use UnexpectedValueException;
 
+// phpcs:disable PSR1.Files.SideEffects
 defined('_JEXEC') or die;
+// phpcs:enable PSR1.Files.SideEffects
 
 /**
  * Provides VK Callback service injection for service-aware classes.

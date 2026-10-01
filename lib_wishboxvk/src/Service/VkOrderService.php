@@ -10,21 +10,23 @@ use stdClass;
 use WishboxVkLibrary\Api\VkApiClient;
 use WishboxVkLibrary\Exception\VkApiException;
 
+// phpcs:disable PSR1.Files.SideEffects
 defined('_JEXEC') or die;
+// phpcs:enable PSR1.Files.SideEffects
 
 /**
  * Loads group orders and their items from VK Market.
  *
  * @since 1.0.0
  */
-final class VkOrderService
+final readonly class VkOrderService
 {
 	/**
 	 * @since 1.0.0
 	 */
 	public function __construct(
-		private readonly VkApiClient $apiClient,
-		private readonly int $groupId
+		private VkApiClient $apiClient,
+		private int         $groupId
 	) {
 	}
 
